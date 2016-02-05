@@ -18,7 +18,7 @@ public class Message {
 
   public String toString() {
     if(text.equals("play")) {
-    	return (sender + " has reqested to play.");
+    	return (sender + " has reqested to play. Please type opponent's name, <enter> and then 'accept' or 'reject'.");
     }
     else if(text.equals("accept")) {
     	return (sender + " has accepted your request to play. Please type opponent's name, <enter> and then 'run game'. You will play first.");
@@ -28,6 +28,9 @@ public class Message {
     }
     else if(text.equals("0") || text.equals("1") || text.equals("2") || text.equals("3") || text.equals("4") || text.equals("5") || text.equals("6") || text.equals("7") || text.equals("8") || text.equals("9")) {
     	return text + " " + sender;
+    }
+    else if(text.substring(0, 8).equals("Players:")) {
+    	return text;
     }
     else {
     	return "From " + sender + ": " + text;

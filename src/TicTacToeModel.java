@@ -47,42 +47,10 @@ Let the player whose turn it is play at a particular location
 		return oxo.getMove();
 	}
 	
-/*	public void setMove(int move) {
-		if(move == 1) {
-			oxo.turn(0, 0);
-		}
-		else if(move == 2) {
-			oxo.turn(1, 0);
-		}
-		else if(move == 3) {
-			oxo.turn(2, 0);
-		}
-		else if(move == 4) {
-			oxo.turn(0, 1);
-		}
-		else if(move == 5) {
-			oxo.turn(1, 1);
-		}
-		else if(move == 6) {
-			oxo.turn(2, 1);
-		}
-		else if(move == 7) {
-			oxo.turn(0, 2);
-		}
-		else if(move == 8) {
-			oxo.turn(1, 2);
-		}
-		else if(move == 9) {
-			oxo.turn(2, 2);
-		}
-		setChanged();
-		notifyObservers();
-	}
-*/	
-		
+
 /**
 Determine who (if anyone) has won
-@return CROSS if cross has won, NOUGHT if nought has won, oetherwise BLANK
+@return CROSS if cross has won, NOUGHT if nought has won, otherwise BLANK
 */
 	public int whoWon()
 	{
@@ -97,6 +65,13 @@ Determine who (if anyone) has won
 		oxo.setFinished();
 	}
 	
+	public boolean turnTaken() {
+		return oxo.turnTaken();
+	}
+	
+	public void setTurnTaken(boolean bool) {
+		oxo.setTurnTaken(bool);
+	}
 	
 /**
 Start a new game

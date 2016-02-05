@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.Set;
 
 // Gets messages from client and puts them in a queue, for another thread to forward to the appropriate client.
 
@@ -18,14 +19,25 @@ public class ServerReceiver extends Thread {
     	System.out.println("Starting to recieve Data");
       while (true) {
         String recipient = myClient.readLine();
+        
+        if(recipient.equals("players")) {
+        	Set playerSet = this.clientTable.keySet();
+        	Object[] playerArray = playerSet.toArray();
+        	String players = "Players: " + playerArray[0];
+        	for(int i = 1; i < playerArray.length; i++) {
+        		players = players + ", " + playerArray[i]; 
+        	}
+        	Message msg = new Message(myClientsName, players);
+        	MessageQueue recipientsQueue = clientTable.getQueue(myClientsName);
+        	recipientsQueue.offer(msg);
+        }
         String text = myClient.readLine();
+        
         if (recipient != null && text != null) {
           Message msg = new Message(myClientsName, text);
           MessageQueue recipientsQueue = clientTable.getQueue(recipient);
-          System.out.println("recipientsQueue: " + recipientsQueue);
           if (recipientsQueue != null){
             recipientsQueue.offer(msg);
-            System.out.println("msg: " + msg);
           }
           else
             System.err.println("Message for unexistent client " 

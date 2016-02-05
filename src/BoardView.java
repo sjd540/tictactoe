@@ -80,6 +80,18 @@ public class BoardView extends JPanel implements Observer
 		model.setFinished();
 	}
 	
+	public boolean turnTaken() {
+		return model.turnTaken();
+	}
+	
+	public void setTurnTaken(boolean bool) {
+		model.setTurnTaken(bool);
+	}
+	
+	public int whoWon() {
+		return model.whoWon();
+	}
+	
 	public void update(Observable obs, Object obj)
 	{
 		// for each square do the following:

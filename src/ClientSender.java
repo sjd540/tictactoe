@@ -24,7 +24,7 @@ public class ClientSender extends Thread {
     try {
       // Tell the server what my nickname is:
       server.println(nickname);
-      System.out.println("Client successfully launched");
+      System.out.println("Client successfully launched. Welcome to Noughts and Crosses. To see a list of the players connected, please type 'players'. To play against someone, please type opponent's name, <enter> and then 'play'.");
 
       // Then loop forever sending messages to recipients via the server:
       while (true) {
@@ -33,6 +33,9 @@ public class ClientSender extends Thread {
         	System.out.println("Quitting");
         	System.exit(0);
         	break;
+        }
+        else if(recipient.equals("players")) {
+        	server.println(recipient);
         }
         
         String text = user.readLine();
@@ -46,19 +49,21 @@ public class ClientSender extends Thread {
         	System.out.println("Creating GUI");
         	game.createGUI();
         	while(game.hasFinished() != true) {
-        		//System.out.println("Starting to exchange data");
-        		server.println(recipient);
-        		server.println(Integer.toString(game.getMove()));
-        		if (recipient.equals("quit") || text.equals("quit") || game.hasFinished()){
-        			System.out.println("We want to quit");
-        			game.setFinished();
-        			break;
+        		if(game.turnTaken()) {
+        			server.println(recipient);
+            		server.println(Integer.toString(game.getMove()));
+            		game.setTurnTaken(false);
         		}
+        	}
+        	if(game.whoWon() == TicTacToe.NOUGHT) {
+        		System.out.println("NOUGHT won!");
+        	}
+        	else if(game.whoWon() == TicTacToe.CROSS) {
+        		System.out.println("CROSS won!");
         	}
         }
         else {
-    		System.out.println("ELse statement");
-        	server.println(recipient);
+    		server.println(recipient);
         	server.println(text);
         }
       }

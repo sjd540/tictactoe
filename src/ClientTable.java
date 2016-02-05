@@ -1,5 +1,6 @@
 // Each nickname has a different incomming-message queue.
 
+import java.util.Set;
 import java.util.concurrent.*;
 
 public class ClientTable {
@@ -19,6 +20,10 @@ public class ClientTable {
   // Returns null if the nickname is not in the table:
   public MessageQueue getQueue(String nickname) {
     return queueTable.get(nickname);
+  }
+  
+  public Set keySet() {
+	  return queueTable.keySet();
   }
 
 }

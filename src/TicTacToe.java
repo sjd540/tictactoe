@@ -8,6 +8,7 @@ public class TicTacToe
 	private int[][] board;
 	private int move;
 	private boolean isFinished;
+	private boolean turnTaken;
 
 /**
 Create a new game with empty board
@@ -25,6 +26,7 @@ Create a new game with empty board
 		crossTurn = true;
 		this.move = 0;
 		this.isFinished = false;
+		this.turnTaken = false;
 	}
 
 
@@ -67,6 +69,7 @@ Let the player whose turn it is play at a particular location
 				board[i][j] = NOUGHT;
 			}
 			crossTurn = !crossTurn;
+			this.turnTaken = true;
 			if(i == 0) {
 				if(j == 0) {
 					this.move = 1;
@@ -109,6 +112,14 @@ Let the player whose turn it is play at a particular location
 	
 	public int getMove() {
 		return this.move;
+	}
+	
+	public boolean turnTaken() {
+		return this.turnTaken;
+	}
+	
+	public void setTurnTaken(boolean bool) {
+		this.turnTaken = bool;
 	}
 	
 	private boolean winner(int player)

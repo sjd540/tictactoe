@@ -36,4 +36,16 @@ public class TicTacToeComponent extends JPanel
 	public void setFinished(){
 		board.setFinished();
 	}
+	
+	public boolean turnTaken() {
+		return board.turnTaken();
+	}
+	
+	public void setTurnTaken(boolean bool) {
+		board.setTurnTaken(bool);
+	}
+	
+	public int whoWon() {
+		return board.whoWon();
+	}
 }

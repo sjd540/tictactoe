@@ -35,4 +35,16 @@ public class TicTacToeGUI
 	public void setFinished() {
 		comp.setFinished();
 	}
+	
+	public boolean turnTaken() {
+		return comp.turnTaken();
+	}
+	
+	public void setTurnTaken(boolean bool) {
+		comp.setTurnTaken(bool);
+	}
+	
+	public int whoWon() {
+		return comp.whoWon();
+	}
 }
